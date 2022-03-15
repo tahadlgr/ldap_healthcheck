@@ -1,0 +1,21 @@
+apiVersion: 2
+applicationCode: UK1256
+code: ACI67346
+contentType: software-internalCI
+dependencies: []
+detail:
+  email: cagrihan.dulgar@isbank.com.tr
+  pasifikDeclaration: 'no'
+  scoretfsTeamProject: USYPROJE
+  targetDeploymentEnvironment: cont
+details: []
+itemId: ldap-healthcheck[Package:Software:pythonbatch]
+name: ldap-healthcheck
+subtype: Software
+tech:
+  language: python
+  template: pythonbatch
+  version: '3'
+type: Package
+user: '103153'
+version: 0.0.1

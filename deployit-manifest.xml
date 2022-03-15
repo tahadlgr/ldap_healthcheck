@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<udm.DeploymentPackage version="20220315.1" application="ACI67346">
+  <application/>
+  <orchestrator/>
+  <deployables>
+    <k8s.ResourcesFile name="/ldap-healthcheck" file="deployment.yaml">
+      <tags/>
+      <scanPlaceholders>true</scanPlaceholders>
+      <preScannedPlaceholders>true</preScannedPlaceholders>
+      <placeholders/>
+      <delimiters>{{ }}</delimiters>
+      <updateMethod>apply</updateMethod>
+      <createOrder>81</createOrder>
+      <modifyOrder>82</modifyOrder>
+      <destroyOrder>80</destroyOrder>
+    </k8s.ResourcesFile>
+  </deployables>
+  <applicationDependencies/>
+  <dependencyResolution>LATEST</dependencyResolution>
+  <undeployDependencies>false</undeployDependencies>
+  <templates/>
+  <boundTemplates/>
+</udm.DeploymentPackage>

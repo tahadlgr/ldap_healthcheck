@@ -1,0 +1,1 @@
+Hello developer. I'm Morty. Pandemic still continues?

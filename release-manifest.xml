@@ -1,0 +1,14 @@
+<ReleaseManifest version="1.0" info="https://jira.isbank/confluence/pages/viewpage.action?pageId=168855357">
+    <ReleaseInfo>
+        <type>APP</type>
+        <level>PROD</level>
+    </ReleaseInfo>
+    <ReleasePackage>
+        <packages>
+            <package aci="ACI67346">
+                <zoneValidation>false</zoneValidation>
+                <f5>false</f5>
+            </package>
+        </packages>
+    </ReleasePackage>
+</ReleaseManifest>

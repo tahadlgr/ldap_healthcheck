@@ -1,0 +1,84 @@
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ldap-healthcheck-configmap
+data:
+  sample.configmap.variable: {{sample.configmap.xld.variable}}
+
+---
+
+apiVersion: v1
+kind: Secret
+type: Opaque
+metadata:
+  name: ldap-healthcheck-secret
+stringData:
+  sample.secret.variable: {{sample.secret.xld.variable}}
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ldap-healthcheck-deployment
+  labels:
+    app: ldap-healthcheck
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ldap-healthcheck
+  template:
+    metadata:
+      labels:
+        app: ldap-healthcheck
+    spec:
+      containers:
+        - name: ldap-healthcheck
+          image: scorenexus.isbank:9443/ldap-healthcheck/ldap-healthcheck:0.0.1
+          envFrom:
+            - configMapRef:
+                name: ldap-healthcheck-configmap
+            - secretRef: 
+                name: ldap-healthcheck-secret
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "10m"
+            limits:
+              memory: "128Mi"
+              cpu: "100m"
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: ldap-healthcheck-service
+spec:
+  selector:
+    app: ldap-healthcheck
+  ports:
+    - port: 5000
+
+---
+
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ldap-healthcheck-ingress
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: {{ldap-healthcheck.hostname}}
+    http:
+      paths:
+      - backend:
+          serviceName: ldap-healthcheck-service
+          servicePort: 5000
+  tls:
+  - hosts:
+    - {{ldap-healthcheck.hostname}}
+    secretName: tls-secret

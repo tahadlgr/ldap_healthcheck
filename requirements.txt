@@ -3,11 +3,11 @@ Flask==2.0.1
 requests==2.26.0
 threading
 time
-from threading import Thread
-from requests.auth import HTTPBasicAuth
+threading
+requests.auth
 json
-from kafka import KafkaProducer
-from datetime import datetime
+kafka
+datetime
 time
 schedule
 math

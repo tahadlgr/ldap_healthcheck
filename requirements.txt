@@ -1,0 +1,13 @@
+os
+Flask==2.0.1
+requests==2.26.0
+threading
+time
+from threading import Thread
+from requests.auth import HTTPBasicAuth
+json
+from kafka import KafkaProducer
+from datetime import datetime
+time
+schedule
+math

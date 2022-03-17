@@ -8,14 +8,15 @@ ENV PYTHONUNBUFFERED=0
 
 RUN groupadd -g 1500 wasgrp && useradd -r -u 1500 -g wasgrp thdlgr
 
-RUN chown -R thdlgr:wasgrp /app
-
 RUN chmod -R 755 /app
 
 WORKDIR /app
+
 COPY /app .
 
 RUN python3 -m pip install -r requirements.txt --upgrade
+
+RUN chown -R thdlgr:wasgrp .
 
 EXPOSE 8080
 

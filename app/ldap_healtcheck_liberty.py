@@ -9,7 +9,6 @@ import json
 from kafka import KafkaProducer
 from datetime import datetime
 import time
-import schedule
 import math
 
 ###PREPARED BY TCD###

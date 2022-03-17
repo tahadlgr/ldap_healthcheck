@@ -6,7 +6,7 @@ from threading import Thread
 from requests.auth import HTTPBasicAuth
 import requests
 import json
-from kafka import KafkaProducer
+from kafka.producer import KafkaProducer
 from datetime import datetime
 import time
 import math

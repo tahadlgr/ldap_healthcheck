@@ -14,7 +14,10 @@ import math
 ###PREPARED BY TCD###
 
 env=os.environ.get("env")
-bootstrap_servers = os.environ.get("bootstrap_servers")
+kafka_host1 = os.environ.get("kafka_host1")
+kafka_host2 = os.environ.get("kafka_host2")
+kafka_host3 = os.environ.get("kafka_host3")
+bootstrap_servers=[kafka_host1, kafka_host2, kafka_host3]
 
 class myThread (threading.Thread):
     #Starting Threads From Here

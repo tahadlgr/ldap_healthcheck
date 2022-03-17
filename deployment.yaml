@@ -6,7 +6,9 @@ metadata:
   namespace: ldap-healthcheck
 data:
   env: {{env}}
-  bootstrap_servers: {{bootstrap_servers}}
+  kafka_host1: {{kafka_host1}}
+  kafka_host2: {{kafka_host2}}
+  kafka_host3: {{kafka_host3}}
 ---
 
 apiVersion: v1
@@ -37,7 +39,7 @@ spec:
     spec:
       containers:
         - name: ldap-healthcheck
-          image: scorenexus.isbank:9443/ldap-healthcheck/ldap-healthcheck:0.0.5
+          image: scorenexus.isbank:9443/ldap-healthcheck/ldap-healthcheck:0.0.6
           ports:
             - containerPort: 8080
           envFrom:

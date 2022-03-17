@@ -2,9 +2,6 @@ Flask==2.25.1
 requests==2.26.0
 requests.auth
 kafka==1.3.5
-datetime=4.4
-<<<<<<< HEAD
+Datetime=4.4
 schdeule==1.1.0
-=======
-schdeule==1.1.0
->>>>>>> b775657e94f0a46909255f639608893434c29a1d
+

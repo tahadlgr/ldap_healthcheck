@@ -129,7 +129,7 @@ class inventorius ():
         # print ("Thraed_%s has just started working at %s"%(1,time.ctime(time.time())))
         # thread2 = myThread("Thread-2", "klcovkduwlpt2")
         # thread3 = myThread("Thread-2", "klcovkduwlpt1")
-        # #print(liberty_hosts_prod)
+
         # thread1.start()
         # time.sleep(3)
         # thread2.start()

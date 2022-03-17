@@ -6,6 +6,8 @@ ENV PIP_INDEX_URL="https://scorenexus.isbank/repository/pypi-group/simple"
 ENV PIP_TRUSTED_HOST="scorenexus.isbank"
 ENV PYTHONUNBUFFERED=0
 
+RUN groupadd -g 1500 wasgrp && useradd -r -u 1500 -g wasgrp thdlgr
+
 WORKDIR /app
 COPY /app .
 

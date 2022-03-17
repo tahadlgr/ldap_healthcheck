@@ -8,13 +8,15 @@ ENV PYTHONUNBUFFERED=0
 
 RUN groupadd -g 1500 wasgrp && useradd -r -u 1500 -g wasgrp thdlgr
 
-RUN chmod -R 755 /app
+
 
 WORKDIR /app
 
 COPY /app .
 
 RUN python3 -m pip install -r requirements.txt --upgrade
+
+RUN chmod -R 755 .
 
 RUN chown -R thdlgr:wasgrp .
 

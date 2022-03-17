@@ -1,2 +1,16 @@
 FROM python:3.8-slim
 LABEL Name="ldap-healthcheck"
+
+ENV PIP_DEFAULT_TIMEOUT=3600
+ENV PIP_INDEX_URL="https://scorenexus.isbank/repository/pypi-group/simple"
+ENV PIP_TRUSTED_HOST="scorenexus.isbank"
+ENV PYTHONUNBUFFERED=0
+
+WORKDIR /app
+COPY /app .
+
+RUN python3 -m pip install -r requirements.txt --upgrade
+
+EXPOSE 8080
+
+CMD [ "python", "./ldap_healtcheck_liberty.py" ]

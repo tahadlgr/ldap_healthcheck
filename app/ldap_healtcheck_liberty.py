@@ -6,7 +6,7 @@ from threading import Thread
 from requests.auth import HTTPBasicAuth
 import requests
 import json
-from kafka.producer import KafkaProducer
+from kafka import KafkaProducer
 from datetime import datetime
 import time
 import math
@@ -14,6 +14,7 @@ import math
 ###PREPARED BY TCD###
 
 env=os.environ.get("env")
+bootstrap_servers = os.environ.get("bootstrap_servers")
 
 class myThread (threading.Thread):
     #Starting Threads From Here
@@ -30,6 +31,7 @@ class myThread (threading.Thread):
         ldap_conn().get_request(self.host)
         #threadLock.release()
 
+
 class ldap_conn(object):
     def __init__(self):
         self.x = 'Hello'
@@ -42,7 +44,7 @@ class ldap_conn(object):
             current_timestamp = current_timestamp.strip()
             print("Current timestamp is: " + current_timestamp)
             #Kafka Info
-            producer = KafkaProducer(bootstrap_servers=['klmetkfkt1.uatisbank:9092', 'klmetkfkt2.uatisbank:9092', 'klmetkfkt3.uatisbank:9092'])
+            producer = KafkaProducer(bootstrap_servers = bootstrap_servers)
             ldap_healtcheck_liberty="ldap_healtcheck_liberty"
             # Checking LDAP Connections of Servers and Sendind Datas to Kafka
             try:

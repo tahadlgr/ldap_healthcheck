@@ -9,4 +9,9 @@
     <uat>ldap-healthcheck_liberty.kube.uatisbank</uat>
     <prod>ldap-healthcheck_liberty.kube.isbank</prod>
   </entry>
+  <entry key="bootstrap_servers">
+    <int>['klmetkfkt1.uatisbank:9092', 'klmetkfkt2.uatisbank:9092', 'klmetkfkt3.uatisbank:9092']</int>
+    <uat>['klmetkfkt1.uatisbank:9092', 'klmetkfkt2.uatisbank:9092', 'klmetkfkt3.uatisbank:9092']</uat>
+    <prod>['klmetkfk01.isbank:9092', 'klmetkfk02.isbank:9092', 'klmetkfk03.isbank:9092']</prod>
+  </entry>
 </entries>

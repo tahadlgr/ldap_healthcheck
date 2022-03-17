@@ -8,6 +8,7 @@ ENV PYTHONUNBUFFERED=0
 
 RUN groupadd -g 1500 wasgrp && useradd -r -u 1500 -g wasgrp thdlgr
 USER thdlgr
+CHMOD 755 *
 
 WORKDIR /app
 COPY /app .

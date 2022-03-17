@@ -5,8 +5,7 @@ metadata:
   name: ldap-healthcheck-configmap
   namespace: ldap-healthcheck
 data:
-  sample.configmap.variable: {{sample.configmap.xld.variable}}
-
+  env: {{env}}
 ---
 
 apiVersion: v1
@@ -15,7 +14,7 @@ type: Opaque
 metadata:
   name: ldap-healthcheck-secret
 stringData:
-  sample.secret.variable: {{sample.secret.xld.variable}}
+  sample.secret.variable: "aaa"
 
 ---
 

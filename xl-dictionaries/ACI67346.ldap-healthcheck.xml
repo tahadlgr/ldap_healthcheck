@@ -1,0 +1,12 @@
+<entries>
+  <entry key="env">
+    <int>UAT</int>
+    <uat>UAT</uat>
+    <prod>PROD</prod>
+  </entry>
+  <entry key="ldap-healthcheck.hostname">
+    <int>ldap-healthcheck_liberty.kube.intisbank</int>
+    <uat>ldap-healthcheck_liberty.kube.uatisbank</uat>
+    <prod>ldap-healthcheck_liberty.kube.isbank</prod>
+  </entry>
+</entries>

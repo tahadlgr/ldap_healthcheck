@@ -72,7 +72,7 @@ class ldap_conn(object):
             print("The data that is sent to Kafka: " + all_kafka_data)    
             producer.send('custommon', bytes(all_kafka_data, 'utf-8'))    
             producer.flush()
-            time.sleep(10)
+            time.sleep(15)
 
 
 

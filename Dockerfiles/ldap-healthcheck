@@ -7,8 +7,13 @@ ENV PIP_TRUSTED_HOST="scorenexus.isbank"
 ENV PYTHONUNBUFFERED=0
 
 RUN groupadd -g 1500 wasgrp && useradd -r -u 1500 -g wasgrp thdlgr
+
+RUN chown -R wasgrp:thdlgr /app
+
+RUN chmod -R 755 /app
+
 USER thdlgr
-RUN CHMOD 755 *
+
 
 WORKDIR /app
 COPY /app .

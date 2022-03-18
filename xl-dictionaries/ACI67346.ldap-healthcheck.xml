@@ -5,9 +5,9 @@
     <prod>PROD</prod>
   </entry>
   <entry key="ldap-healthcheck.hostname">
-    <int>ldap-healthcheck_liberty.kube.intisbank</int>
-    <uat>ldap-healthcheck_liberty.kube.uatisbank</uat>
-    <prod>ldap-healthcheck_liberty.kube.isbank</prod>
+    <int>ldap-healthcheck-liberty.kube.intisbank</int>
+    <uat>ldap-healthcheck-liberty.kube.uatisbank</uat>
+    <prod>ldap-healthcheck-liberty.kube.isbank</prod>
   </entry>
   <entry key="kafka_host1">
     <int>'klmetkfkt1.uatisbank:9092'</int>

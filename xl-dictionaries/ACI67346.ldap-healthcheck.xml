@@ -1,6 +1,6 @@
 <entries>
   <entry key="env">
-    <int>UAT</int>
+    <int>INT</int>
     <uat>UAT</uat>
     <prod>PROD</prod>
   </entry>

@@ -17,7 +17,7 @@ type: Opaque
 metadata:
   name: ldap-healthcheck-secret
 stringData:
-  sample.secret.variable: "aaa"
+  api_password: {{api_password}}
 
 ---
 
@@ -39,7 +39,7 @@ spec:
     spec:
       containers:
         - name: ldap-healthcheck
-          image: scorenexus.isbank:9443/ldap-healthcheck/ldap-healthcheck:0.0.8
+          image: scorenexus.isbank:9443/ldap-healthcheck/ldap-healthcheck:0.0.9
           ports:
             - containerPort: 8080
           envFrom:
@@ -88,6 +88,8 @@ spec:
   - hosts:
     - {{ldap-healthcheck.hostname}}
     secretName: tls-secret
+
+---
 
 apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler

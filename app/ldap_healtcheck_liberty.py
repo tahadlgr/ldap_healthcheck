@@ -13,10 +13,11 @@ import math
 
 ###PREPARED BY TCD###
 
-env=os.environ.get("env")
+env = os.environ.get("env")
 kafka_host1 = os.environ.get("kafka_host1")
 kafka_host2 = os.environ.get("kafka_host2")
 kafka_host3 = os.environ.get("kafka_host3")
+api_password = os.environ.get("api_password")
 bootstrap_servers=[kafka_host1, kafka_host2, kafka_host3]
 
 class myThread (threading.Thread):
@@ -52,7 +53,7 @@ class ldap_conn(object):
             # Checking LDAP Connections of Servers and Sendind Datas to Kafka
             try:
                 print("Trying to check the connection status for %s"%host_name)
-                response4liberty = requests.get(('https://%s:9443/IBMJMXConnectorREST/mbeans/'%host_name), auth=HTTPBasicAuth('wassecadm', 'WASsec2013'), verify = False)            
+                response4liberty = requests.get(('https://%s:9443/IBMJMXConnectorREST/mbeans/'%host_name), auth=HTTPBasicAuth('wassecadm', api_password), verify = False)            
                 response4liberty_str = str(response4liberty.status_code)
 
                 print("Status Code for LDAP Connection: " + response4liberty_str)
@@ -119,6 +120,11 @@ class inventorius ():
 
             else:
                 print("UAT Inventorius API seems unreachable.")
+
+        elif env == "INT":
+            while True:
+                print("App is disabled for INT environment.")
+                time.sleep(3600)
 
         else:
              print("Invalid env error") 

@@ -46,10 +46,11 @@ class ldap_conn(object):
             #Current Timestamp Calculating
             current_timestamp = str(int(math.floor(datetime.now().timestamp())*1000000000))
             current_timestamp = current_timestamp.strip()
-            print("Current timestamp is: " + current_timestamp)
+            print("Current timestamp is: %s and time is %s"%(current_timestamp,time.ctime(time.time())))
+            
             #Kafka Info
-            producer = KafkaProducer(bootstrap_servers = bootstrap_servers)
-            ldap_healtcheck_liberty="ldap_healtcheck_liberty"
+            producer = KafkaProducer(bootstrap_servers = bootstrap_servers, api_version = (2,5))
+            ldap_healthcheck_liberty="ldap_healthcheck_liberty"
             # Checking LDAP Connections of Servers and Sendind Datas to Kafka
             try:
                 print("Trying to check the connection status for %s"%host_name)
@@ -60,15 +61,15 @@ class ldap_conn(object):
                 
                 if (response4liberty.status_code == 200):
                     print("LDAP connnection is succesful")
-                    connection_info="ldap_healtcheck_liberty,Host=%s LDAP_connection_status=\"2\""%host_name
+                    connection_info="ldap_healthcheck_liberty,Host=%s LDAP_connection_status=\"2\""%host_name
                     all_kafka_data=connection_info + " " + current_timestamp
                 else:
                     print("There is no connection to LDAP from this server")
-                    connection_info="ldap_healtcheck_liberty,Host=%s LDAP_connection_status=\"1\""%host_name
+                    connection_info="ldap_healthcheck_liberty,Host=%s LDAP_connection_status=\"1\""%host_name
                     all_kafka_data=connection_info + " " + current_timestamp               
             except:
                 print("An exceptional situation occured. There is connection problem")
-                connection_info="ldap_healtcheck_liberty,Host=%s LDAP_connection_status=\"0\""%host_name
+                connection_info="ldap_healthcheck_liberty,Host=%s LDAP_connection_status=\"0\""%host_name
                 all_kafka_data=connection_info + " " + current_timestamp
             print("The data that is sent to Kafka: " + all_kafka_data)    
             producer.send('custommon', bytes(all_kafka_data, 'utf-8'))    
@@ -136,7 +137,7 @@ class inventorius ():
             thread.start()
             time.sleep(2)    
         # thread1 = myThread("Thread-1", "klomiwlpt2")
-        # print ("Thraed_%s has just started working at %s"%(1,time.ctime(time.time())))
+
         # thread2 = myThread("Thread-2", "klcovkduwlpt2")
         # thread3 = myThread("Thread-2", "klcovkduwlpt1")
 

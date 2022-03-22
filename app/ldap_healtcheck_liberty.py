@@ -101,7 +101,7 @@ class inventorius ():
                 a = d['host']
                 host_names.append(a)
 
-            lib_filter_prod = ['wlpt']
+            lib_filter_prod = ['wlp']
             liberty_hosts = [x for x in host_names if all(y in x for y in lib_filter_prod)]
         
         #This part is for the UAT inventorius
@@ -131,9 +131,9 @@ class inventorius ():
              print("Invalid env error") 
 
         # Defining Threads and Starting
-        for host_uat in liberty_hosts:
-            thread_number = int(liberty_hosts.index(host_uat)) + 1
-            thread = myThread(('Thread-{}'.format(thread_number)), host_uat)
+        for host_for_screen in liberty_hosts:
+            thread_number = int(liberty_hosts.index(host_for_screen)) + 1
+            thread = myThread(('Thread-{}'.format(thread_number)), host_for_screen)
             thread.start()
             time.sleep(2)    
         # thread1 = myThread("Thread-1", "klomiwlpt2")

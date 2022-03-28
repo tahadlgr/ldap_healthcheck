@@ -1,4 +1,4 @@
-FROM python:3.8-slim
+FROM python:latest
 LABEL Name="ldap-healthcheck"
 
 ENV PIP_DEFAULT_TIMEOUT=3600

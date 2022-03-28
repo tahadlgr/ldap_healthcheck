@@ -48,10 +48,10 @@ class ldap_conn(object): #Changed line
             current_timestamp = str(int(math.floor(datetime.now().timestamp())*1000000000))
             current_timestamp = current_timestamp.strip()
             
-            print("Current timestamp: %s time: %s host: %s thread number: %s "%(current_timestamp,time.ctime(time.time()),host_name,self.thread_num))  #Changed line  
+            print("Current timestamp: %s time: %s" %(current_timestamp,time.ctime(time.time())))  #Changed line  
             
             #Kafka Info
-            producer = KafkaProducer(bootstrap_servers = bootstrap_servers, api_version = (2,5))  #Changed line 
+            producer = KafkaProducer(bootstrap_servers = bootstrap_servers, api_version = (2))  #Changed line 
             ldap_healthcheck_liberty="ldap_healthcheck_liberty"
             # Checking LDAP Connections of Servers and Sendind Datas to Kafka
             try:

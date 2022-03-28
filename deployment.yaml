@@ -39,7 +39,7 @@ spec:
     spec:
       containers:
         - name: ldap-healthcheck
-          image: scorenexus.isbank:9443/ldap-healthcheck/ldap-healthcheck:1.0.0
+          image: scorenexus.isbank:9443/ldap-healthcheck/ldap-healthcheck:1.0.1
           ports:
             - containerPort: 8080
           envFrom:
@@ -53,7 +53,7 @@ spec:
               cpu: "2000m"
             limits:
               memory: "3072Mi"
-              cpu: "3000m"
+              cpu: "3500m"
 
 ---
 

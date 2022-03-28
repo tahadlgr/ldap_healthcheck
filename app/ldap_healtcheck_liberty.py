@@ -50,7 +50,7 @@ class ldap_conn(myThread): #Changed line
             print("Current timestamp: %s time: %s host: %s thread name: %s "%(current_timestamp,time.ctime(time.time()),host_name,self.thread_name))  #Changed line  
             
             #Kafka Info
-            producer = KafkaProducer(bootstrap_servers = bootstrap_servers, api_version = (2))  #Changed line 
+            producer = KafkaProducer(bootstrap_servers = bootstrap_servers, api_version = (2,5))  #Changed line 
             ldap_healthcheck_liberty="ldap_healthcheck_liberty"
             # Checking LDAP Connections of Servers and Sendind Datas to Kafka
             try:

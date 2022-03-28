@@ -36,7 +36,7 @@ class myThread (threading.Thread):
         #threadLock.release()
 
 
-class ldap_conn(myThread): #Changed line  
+class ldap_conn(object): #Changed line  
     def __init__(self):
         self.x = 'Hello'
 
@@ -47,10 +47,10 @@ class ldap_conn(myThread): #Changed line
             current_timestamp = str(int(math.floor(datetime.now().timestamp())*1000000000))
             current_timestamp = current_timestamp.strip()
             
-            print("Current timestamp: %s time: %s host: %s thread name: %s "%(current_timestamp,time.ctime(time.time()),host_name,self.thread_name))  #Changed line  
+            print("Current timestamp: %s time: %s host: %s "%(current_timestamp,time.ctime(time.time()),host_name))  #Changed line  
             
             #Kafka Info
-            producer = KafkaProducer(bootstrap_servers = bootstrap_servers, api_version = (2,5))  #Changed line 
+            producer = KafkaProducer(bootstrap_servers = bootstrap_servers, api_version = (2))  #Changed line 
             ldap_healthcheck_liberty="ldap_healthcheck_liberty"
             # Checking LDAP Connections of Servers and Sendind Datas to Kafka
             try:
@@ -72,7 +72,7 @@ class ldap_conn(myThread): #Changed line
                 print("An exceptional situation occured. There is connection problem")
                 connection_info="ldap_healthcheck_liberty,Host=%s LDAP_connection_status=\"0\""%host_name
                 all_kafka_data=connection_info + " " + current_timestamp
-            print("The data that is sent to Kafka: %s for %s "%(all_kafka_data,self.thread_name)) #Changed line  
+            print("The data that is sent to Kafka: %s "%(all_kafka_data)) #Changed line  
             producer.send('custommon', bytes(all_kafka_data, 'utf-8'))    
             producer.flush()
             time.sleep(30)

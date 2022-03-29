@@ -39,7 +39,7 @@ spec:
     spec:
       containers:
         - name: ldap-healthcheck
-          image: scorenexus.isbank:9443/ldap-healthcheck/ldap-healthcheck:1.1.1
+          image: scorenexus.isbank:9443/ldap-healthcheck/ldap-healthcheck:1.1.2
           ports:
             - containerPort: 8080
           envFrom:

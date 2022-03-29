@@ -35,9 +35,8 @@ class myThread (threading.Thread):
         ldap_conn().get_request(self.host)
         #threadLock.release()
 
-thread_num=myThread()
 
-class ldap_conn(myThread): #Changed line  
+class ldap_conn(object): #Changed line  
     def __init__(self):
         self.req_num = 0
 
@@ -77,7 +76,7 @@ class ldap_conn(myThread): #Changed line
                     print("An exceptional situation occured. There is connection problem")
                     connection_info="ldap_healthcheck_liberty,Host=%s LDAP_connection_status=\"0\""%host_name
                     all_kafka_data=connection_info + " " + current_timestamp
-                print("The data that is sent to Kafka: %s *** thread number: %s *** request number: %s"%(all_kafka_data,(thread_num.thread_name),self.req_num)) #Changed line  
+                print("The data that is sent to Kafka: %s ***  request number: %s"%(all_kafka_data,self.req_num)) #Changed line  
                 producer.send('custommon', bytes(all_kafka_data, 'utf-8'))    
                 producer.flush()
                 time.sleep(30)

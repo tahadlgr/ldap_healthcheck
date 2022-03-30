@@ -44,15 +44,16 @@ class ldap_conn(object): #Changed line
         self.host_name = host_name
         
         while True:
+            time.sleep(3)
+            
             try:
-                time.sleep(3)
                 self.req_num += 1
                 #Current Timestamp Calculating
                 current_timestamp = str(int(datetime.now().timestamp() * 1000000000))
                 #current_timestamp = str(int(math.floor(datetime.now().timestamp())*1000000000))
                 current_timestamp = current_timestamp.strip()
                 
-                print("Current timestamp: %s time: %s and  host name:" %(current_timestamp,time.ctime(time.time()),host_name))  #Changed line  
+                print("Current timestamp: %s time: %s and  host name: %s" %(current_timestamp,time.ctime(time.time()),host_name))  #Changed line  
                 
                 #Kafka Info
                 producer = KafkaProducer(bootstrap_servers = bootstrap_servers, api_version = (0,9))  #Changed line 

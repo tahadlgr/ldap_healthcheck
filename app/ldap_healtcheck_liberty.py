@@ -45,13 +45,14 @@ class ldap_conn(object): #Changed line
         
         while True:
             try:
+                time.sleep(3)
                 self.req_num += 1
                 #Current Timestamp Calculating
                 current_timestamp = str(int(datetime.now().timestamp() * 1000000000))
                 #current_timestamp = str(int(math.floor(datetime.now().timestamp())*1000000000))
                 current_timestamp = current_timestamp.strip()
                 
-                print("Current timestamp: %s time: %s" %(current_timestamp,time.ctime(time.time())))  #Changed line  
+                print("Current timestamp: %s time: %s and  host name:" %(current_timestamp,time.ctime(time.time()),host_name))  #Changed line  
                 
                 #Kafka Info
                 producer = KafkaProducer(bootstrap_servers = bootstrap_servers, api_version = (0,9))  #Changed line 
@@ -79,7 +80,7 @@ class ldap_conn(object): #Changed line
                 print("The data that is sent to Kafka: %s ***  request number: %s"%(all_kafka_data,self.req_num)) #Changed line  
                 producer.send('custommon', bytes(all_kafka_data, 'utf-8'))    
                 producer.flush()
-                time.sleep(30)
+                time.sleep(28)
             except:
                 print("If you see this log, there is a huge mistake in your code.")
 
@@ -159,6 +160,7 @@ class inventorius ():
          
         def endpoint4app():
             data = '\n\nLDAP Health Check Application is running successfully.'
+            print("TCD was here")
             print(data)
             return data
         port = int(os.environ.get('PORT', 8080))        

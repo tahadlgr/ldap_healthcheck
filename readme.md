@@ -1,1 +1,1 @@
-Hello developer. I'm Morty. Pandemic still continues?
+These screens provide us to monitor ldap connections of application servers simultaneously.

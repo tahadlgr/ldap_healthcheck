@@ -11,7 +11,6 @@ from datetime import datetime
 import time
 import math
 
-###PREPARED BY TCD###
 
 env = os.environ.get("env")
 kafka_host1 = os.environ.get("kafka_host1")
@@ -20,7 +19,7 @@ kafka_host3 = os.environ.get("kafka_host3")
 api_password = os.environ.get("api_password")
 bootstrap_servers=[kafka_host1, kafka_host2, kafka_host3]
 
-class myThread (threading.Thread):
+class MyThread (threading.Thread):
     #Starting Threads From Here
     def __init__(self, thread_name, host):
        threading.Thread.__init__(self)
@@ -32,11 +31,11 @@ class myThread (threading.Thread):
         #threadLock.acquire()
         print ("Starting " + self.thread_name)
         print ("The data will be retrieved for " + self.host)
-        ldap_conn().get_request(self.host)
+        Ldap_conn().get_request(self.host)
         #threadLock.release()
 
 
-class ldap_conn(object): #Changed line  
+class Ldap_conn(object): 
     def __init__(self):
         self.req_num = 0
 
@@ -53,11 +52,11 @@ class ldap_conn(object): #Changed line
                 #current_timestamp = str(int(math.floor(datetime.now().timestamp())*1000000000))
                 current_timestamp = current_timestamp.strip()
                 
-                print("Current timestamp: %s time: %s and  host name: %s" %(current_timestamp,time.ctime(time.time()),host_name))  #Changed line  
+                print("Current timestamp: %s time: %s and  host name: %s" %(current_timestamp,time.ctime(time.time()),host_name)) 
                 
                 #Kafka Info
-                producer = KafkaProducer(bootstrap_servers = bootstrap_servers, api_version = (0,9))  #Changed line 
-                ldap_healthcheck_liberty="ldap_healthcheck_liberty"
+                producer = KafkaProducer(bootstrap_servers = bootstrap_servers, api_version = (0,9))  
+                
                 # Checking LDAP Connections of Servers and Sendind Datas to Kafka
                 try:
                     print("Trying to check the connection status for %s"%host_name)
@@ -78,15 +77,15 @@ class ldap_conn(object): #Changed line
                     print("An exceptional situation occured. There is connection problem")
                     connection_info="ldap_healthcheck_liberty,Host=%s LDAP_connection_status=\"0\""%host_name
                     all_kafka_data=connection_info + " " + current_timestamp
-                print("The data that is sent to Kafka: %s ***  request number: %s"%(all_kafka_data,self.req_num)) #Changed line  
+                print("The data that is sent to Kafka: %s ***  request number: %s"%(all_kafka_data,self.req_num))  
                 producer.send('custommon', bytes(all_kafka_data, 'utf-8'))    
                 producer.flush()
                 time.sleep(28)
             except:
-                print("If you see this log, there is a huge mistake in your code.")
+                print("There is a huge mistake in your code. This code does not work appropriately. All connections must be checked")
 
 
-class inventorius ():
+class Inventorius ():
 
     def inventorius_data (self):
     
@@ -96,7 +95,7 @@ class inventorius ():
 
         if env == "PROD":
 
-            response4inventorius_prod = requests.get('https://app.isbank/ahtapot/servers/api?field1=ownerGroup&value1=ISQ2ISUS&filed2=os&value2=Linux&field3=environment&value3=PROD', verify = False)        
+            response4inventorius_prod = requests.get('https://api_for_invontorius_PROD', verify = False)        
             if (response4inventorius_prod.status_code == 200):
                 print("Response is taken successfully from inventorius API")
             else:
@@ -114,7 +113,7 @@ class inventorius ():
         
         #This part is for the UAT inventorius
         elif env == "UAT":
-            response4inventorius_uat = requests.get('http://uygulama.isbank/service/information.php?service=server&tip=4&ortam=UAT', verify = False)
+            response4inventorius_uat = requests.get('http://api_for_invontorius', verify = False)
         
             response = response4inventorius_uat.text
             if (response4inventorius_uat.status_code == 200):
@@ -141,13 +140,13 @@ class inventorius ():
         # Defining Threads and Starting
         for host_for_screen in liberty_hosts:
             thread_number = int(liberty_hosts.index(host_for_screen)) + 1
-            thread = myThread(('Thread-{}'.format(thread_number)), host_for_screen)
+            thread = MyThread(('Thread-{}'.format(thread_number)), host_for_screen)
             thread.start()
             time.sleep(2)    
-        # thread1 = myThread("Thread-1", "klomiwlpt2")
+        # thread1 = MyThread("Thread-1", "klomiwlpt2")
 
-        # thread2 = myThread("Thread-2", "klcovkduwlpt2")
-        # thread3 = myThread("Thread-2", "klcovkduwlpt1")
+        # thread2 = MyThread("Thread-2", "klcovkduwlpt2")
+        # thread3 = MyThread("Thread-2", "klcovkduwlpt1")
 
         # thread1.start()
         # time.sleep(3)
@@ -167,7 +166,7 @@ class inventorius ():
         port = int(os.environ.get('PORT', 8080))        
         app.run(host="0.0.0.0", port=port)  
 
-run_app = inventorius()
-run_app.inventorius_data()
+run_app = Inventorius()
+run_app.Inventorius_data()
 
 ###PREPARED BY Taha Çağrıhan Dülgar###                

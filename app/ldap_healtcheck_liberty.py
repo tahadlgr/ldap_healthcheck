@@ -82,7 +82,7 @@ class Ldap_conn(object):
                 producer.flush()
                 time.sleep(28)
             except:
-                print("There is a huge mistake in your code. This code does not work appropriately. All connections must be checked")
+                print("Connections must be checked")
 
 
 class Inventorius ():

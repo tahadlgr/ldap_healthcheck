@@ -69,7 +69,7 @@ spec:
 
 ---
 
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1 #default
 kind: Ingress
 metadata:
   name: ldap-healthcheck-ingress
@@ -78,16 +78,19 @@ metadata:
     ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: {{ldap-healthcheck.hostname}}
-    http:
-      paths:
-      - backend:
-          serviceName: ldap-healthcheck-service
-          servicePort: 8080
+    - host: {{ldap-healthcheck.hostname}}
+      http:
+        paths:
+          - pathType: ImplementationSpecific
+            backend:
+              service:
+                name: ldap-healthcheck-service
+                port:
+                  number: 8080
   tls:
-  - hosts:
-    - {{ldap-healthcheck.hostname}}
-    secretName: tls-secret
+    - hosts:
+        - {{ldap-healthcheck.hostname}}
+      secretName: tls-secret
 
 ---
 

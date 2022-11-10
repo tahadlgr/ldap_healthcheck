@@ -81,8 +81,8 @@ class Ldap_conn(object):
                 producer.send('custommon', bytes(all_kafka_data, 'utf-8'))    
                 producer.flush()
                 time.sleep(28)
-            except:
-                print("Connections must be checked")
+            except Exception as e:
+                print(f"There may be a connection problem: {e}")
 
 
 class Inventorius ():
